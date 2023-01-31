@@ -1,6 +1,10 @@
+require_relative "../interface/name_decorator/name_decorator.rb"
+require_relative "../interface/name_decorator/captialize_decorator.rb"
+require_relative "../interface/name_decorator/trimmer_decorator.rb"
 # Create class Person with intaliase id, name, age
-class Person
+class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
+    super()
     @id = Random.rand(1..1000)
     @name = name
     @age = age
@@ -22,5 +26,18 @@ class Person
   def can_use_services?
     @parent_permission || is_of_age?
   end
-  private :is_of_age?
+  private :of_age?
+
+  def correct_name
+    @name
+  end
 end
+
+person = Person.new(22, 'maximilianus')
+person.correct_name
+capitalizedPerson = CaptailizeDecorator.new(person)
+capitalizedPerson.correct_name
+capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
+capitalizedTrimmedPerson.correct_name
+
+p capitalizedTrimmedPerson.correct_name == 'Maximilian'
