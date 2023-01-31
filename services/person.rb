@@ -1,6 +1,6 @@
-require_relative "../interface/name_decorator/name_decorator.rb"
-require_relative "../interface/name_decorator/captialize_decorator.rb"
-require_relative "../interface/name_decorator/trimmer_decorator.rb"
+require_relative '../interface/name_decorator/name_decorator'
+require_relative '../interface/name_decorator/captialize_decorator'
+require_relative '../interface/name_decorator/trimmer_decorator'
 # Create class Person with intaliase id, name, age
 class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -35,9 +35,9 @@ end
 
 person = Person.new(22, 'maximilianus')
 person.correct_name
-capitalizedPerson = CaptailizeDecorator.new(person)
-capitalizedPerson.correct_name
-capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
-capitalizedTrimmedPerson.correct_name
+capitalized_person = CaptailizeDecorator.new(person)
+capitalized_person.correct_name
+capitalized_trimmed_person = TrimmerDecorator.new(capitalizedPerson)
+capitalized_trimmed_person.correct_name
 
-p capitalizedTrimmedPerson.correct_name == 'Maximilian'
+p capitalized_trimmed_person.correct_name == 'Maximilian'
