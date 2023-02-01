@@ -1,4 +1,5 @@
-require_relative '../services/person'
+require_relative 'person'
+require_relative 'classroom'
 # inherits from Person
 class Student < Person
   attr_reader :classroom
@@ -11,5 +12,14 @@ class Student < Person
   # play_hooky
   def play_hooky
     '¯(ツ)/¯'
+  end
+
+  def belongs_to
+    @classroom.label
+  end
+
+  def classroom=(classroom)
+    @classroom = classroom
+    classroom.add_student(self) unless classroom.students.include?(self)
   end
 end

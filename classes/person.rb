@@ -1,6 +1,8 @@
 require_relative '../interface/name_decorator/name_decorator'
 require_relative '../interface/name_decorator/captialize_decorator'
 require_relative '../interface/name_decorator/trimmer_decorator'
+require_relative 'rental'
+require_relative 'book'
 # Create class Person with intaliase id, name, age
 class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -8,11 +10,12 @@ class Person < Nameable
     @id = Random.rand(1..1000)
     @name = name
     @age = age
+    @rentals = []
     @parent_permission = parent_permission
   end
 
   # getters for id,name,age
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
   attr_reader :id
 
   # setters for name,age
@@ -31,13 +34,15 @@ class Person < Nameable
   def correct_name
     @name
   end
+
+  def add_rental(rental)
+    @rentals << rental unless @rentals.include?(rental)
+  end
 end
 
-person = Person.new(22, 'maximilianus')
-person.correct_name
-capitalized_person = CaptailizeDecorator.new(person)
-capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalizedPerson)
-capitalized_trimmed_person.correct_name
+person = Person.new(18, 'John', parent_permission: true)
+book = Book.new('The Hobbit', 'J.R.R. Tolkien')
+Rental.new('2021-01-01', book, person)
 
-p capitalized_trimmed_person.correct_name == 'Maximilian'
+p person.rentals
+p book.rentals
