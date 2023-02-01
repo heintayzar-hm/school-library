@@ -18,8 +18,6 @@ class Person < Nameable
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
-  # setters for name,age
-
   # private method is_of_age?
   def of_age?
     @age >= 18
@@ -35,6 +33,7 @@ class Person < Nameable
     @name
   end
 
+  # add_rental
   def add_rental(rental)
     @rentals << rental unless @rentals.include?(rental)
   end
