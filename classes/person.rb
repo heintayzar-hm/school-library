@@ -43,6 +43,7 @@ end
 person = Person.new(18, 'John', parent_permission: true)
 book = Book.new('The Hobbit', 'J.R.R. Tolkien')
 Rental.new('2021-01-01', book, person)
-
-p person.rentals
-p book.rentals
+Rental.new('2021-01-02', book, person)
+person_rentals = person.rentals.map(&:date)
+book_rentals = book.rentals.map(&:date)
+p [person_rentals, book_rentals]
