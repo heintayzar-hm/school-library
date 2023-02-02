@@ -40,12 +40,3 @@ class Person < Nameable
   end
 end
 
-person = Person.new(18, 'John', parent_permission: true)
-book = Book.new('The Hobbit', 'J.R.R. Tolkien')
-book2 = Book.new('T-------Hobbit', 'J.R.R. Tolkien')
-person.add_rental('2020-10-10', book)
-person.add_rental('2020-10-11', book)
-book2.add_rental('2020-10-10', person)
-person_rentals = person.rentals.map { |rental| rental.book.title }
-book_rentals = book.rentals.map { |rental| rental.person.name }
-p [person_rentals, book_rentals]
