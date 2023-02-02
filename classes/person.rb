@@ -34,15 +34,18 @@ class Person < Nameable
   end
 
   # add_rental
-  def add_rental(rental)
+  def add_rental(date, book)
+    rental = Rental.new(date, book, self)
     @rentals << rental unless @rentals.include?(rental)
   end
 end
 
 person = Person.new(18, 'John', parent_permission: true)
 book = Book.new('The Hobbit', 'J.R.R. Tolkien')
-Rental.new('2021-01-01', book, person)
-Rental.new('2021-01-02', book, person)
-person_rentals = person.rentals.map(&:date)
-book_rentals = book.rentals.map(&:date)
+book2 = Book.new('T-------Hobbit', 'J.R.R. Tolkien')
+person.add_rental('2020-10-10', book)
+person.add_rental('2020-10-11', book)
+book2.add_rental('2020-10-10', person)
+person_rentals = person.rentals.map { |rental| rental.book.title }
+book_rentals = book.rentals.map { |rental| rental.person.name }
 p [person_rentals, book_rentals]

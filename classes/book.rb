@@ -8,7 +8,8 @@ class Book
   end
   attr_accessor :title, :author, :rentals
 
-  def add_rental(rental)
+  def add_rental(date, person)
+    rental = Rental.new(date, self, person)
     @rentals << rental unless @rentals.include?(rental)
   end
 end
