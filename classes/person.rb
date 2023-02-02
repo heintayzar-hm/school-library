@@ -39,4 +39,3 @@ class Person < Nameable
     @rentals << rental unless @rentals.include?(rental)
   end
 end
-
