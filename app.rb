@@ -21,6 +21,7 @@ Please choose an option by entering a number:
     puts @user_menu
     @user_select = gets.chomp.to_i
     return puts 'Thank you for using this app' if @user_select == 7
+
     options_for_user(@user_select)
   end
 
