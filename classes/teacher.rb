@@ -1,4 +1,4 @@
-require_relative '../services/person'
+require_relative 'person'
 # inherits from person
 class Teacher < Person
   attr_accessor :specialization
